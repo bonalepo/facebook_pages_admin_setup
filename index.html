@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--[if IE 6]><html version="HTML+RDFa 1.1" id="ie6" lang="en-US"><![endif]-->
+<!--[if IE 7]><html version="HTML+RDFa 1.1" id="ie7" lang="en-US"><![endif]-->
+<!--[if IE 8]><html version="HTML+RDFa 1.1" id="ie8" lang="en-US"><![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!--><html version="HTML+RDFa 1.1" lang="en-US"><!--<![endif]-->
+<head>
+ 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="HandheldFriendly" content="true" /><!-- MOBILE - ANDROID -->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0"><!-- MOBILE -->
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="">
+	
+ 
+        <title></title>
+		
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+		<script  type="text/javascript" src="https://connect.facebook.net/en_US/all.js"></script>
+        <!--[<link rel="stylesheet" type="text/css" href="css/style.css">-->
+ 
+        <meta property="og:title" content=""/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content=""/>
+        <meta property="og:image" content=""/>
+        <meta property="og:site_name" content=""/>
+        <meta property="og:description" content=""/>
+ 
+ 
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+ 
+ <script type="text/javascript">
+		  
+			 $(document).ready(function(){
+		
+				//get login status:
+				
+				FB.getLoginStatus(function(response) {
+				  if (response.status === 'connected') {
+					// the user is logged in and has authenticated your
+					// app, and response.authResponse supplies
+					// the user's ID, a valid access token, a signed
+					// request, and the time the access token 
+					// and signed request each expire
+					var uid = response.authResponse.userID;
+					var accessToken = response.authResponse.accessToken;
+					alert(uid);
+				  } else if (response.status === 'not_authorized') {
+					// the user is logged in to Facebook, 
+					// but has not authenticated your app
+					$("#start").append('<a id="login" onclick="authorizeAppInPopup()" href="#" >LOGIN</a>');
+				  } else {
+					// the user isn't logged in to Facebook.
+					$("#start").append('<a id="login" onclick="authorizeAppInPopup()" href="#" >LOGIN!</a>');
+				  }
+				 });
+		
+		
+		  });//end document.ready
+		  
+		  
+		  
+		//Allow App:
+			function authorizeAppInPopup() {
+							FB.init({appId : '487773794609536',status : true, cookie : true, 	xfbml : true });
+							FB.login(function(response) {
+								if (response.authResponse) {
+										// User authorized app
+										var uid = response.authResponse.userID;
+										//setTimeout(refresh, 500);
+										alert(uid);
+										
+									} else {
+										// User cancelled login or did not fully authorize
+									}
+								},{scope: 'email,publish_stream,manage_pages'});
+							
+						}
+					
+						
+		  
+		</script>
+ 
+ 
+ 
+    </head>
+    <body><div id="fb-root"></div>
+<!-- START FACEBOOK INIT ============================================================================================================ -->
+		<script type="text/javascript">
+		FB.init({
+		appId : '487773794609536',
+		status : true, // check login status
+		cookie : true, // enable cookies to allow the server to access the session
+		xfbml : true // parse XFBML
+		});
+		
+	
+		
+		
+		</script>
+		<!-- END FACEBOOK INIT -->
+	<div id="start"></div>
+    </body>
+</html>
